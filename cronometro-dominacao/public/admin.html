@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Admin do Cronômetro de Dominação</title>
+<meta name="theme-color" content="#3b5a2a">
+<meta name="robots" content="noindex">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" href="/icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/icons/icon-192.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<section class="login box" id="login" hidden>
+  <h1>Administrador</h1>
+  <form id="loginForm">
+    <div class="field">
+      <label for="pwd">Senha</label>
+      <input id="pwd" type="password" autocomplete="current-password" required>
+    </div>
+    <p class="msg" id="loginMsg" role="status"></p>
+    <button class="cmd primary" type="submit">Entrar</button>
+  </form>
+</section>
+
+<main class="app" id="adminApp" hidden>
+  <div class="banner" id="banner" role="status" hidden></div>
+
+  <section class="top" aria-label="Relógio de jogo">
+    <div>
+      <div class="clock-label" id="clockLabel">Restante</div>
+      <div class="clock-time" id="clockTime">--:--</div>
+    </div>
+    <div class="top-actions">
+      <div class="status" id="status" data-s="idle">Conectando</div>
+      <button class="cmd primary" id="btnStart" type="button">Iniciar</button>
+    </div>
+  </section>
+  <div class="row-actions">
+    <button class="sound-btn" id="soundBtn" type="button"></button>
+    <button class="sound-btn" id="btnLogout" type="button">Sair</button>
+  </div>
+  <p class="msg" id="msg" role="status"></p>
+
+  <div class="result" id="result" hidden>
+    <h2 id="resultTitle"></h2>
+    <p id="resultText"></p>
+  </div>
+
+  <nav class="tabs" id="tabs" role="tablist" aria-label="Início e pontos"></nav>
+
+  <div id="panels">
+    <section class="panel" id="panel-inicio" role="tabpanel">
+      <div class="board" aria-label="Placar">
+        <div class="score" data-team="a">
+          <div class="score-name" id="nameA">Vermelho</div>
+          <div><div class="label">Pontos</div><div class="score-pts" id="ptsA">0</div></div>
+          <div class="score-meta">
+            <div><div class="label">Tempo de posse</div><div class="meta-val" id="timeA">00:00</div></div>
+            <div><div class="label">Pontos dominados</div><div class="meta-val" id="areasA">0</div></div>
+            <div><div class="label">Capturas</div><div class="meta-val" id="capA">0</div></div>
+          </div>
+        </div>
+        <div class="score" data-team="b">
+          <div class="score-name" id="nameB">Azul</div>
+          <div><div class="label">Pontos</div><div class="score-pts" id="ptsB">0</div></div>
+          <div class="score-meta">
+            <div><div class="label">Tempo de posse</div><div class="meta-val" id="timeB">00:00</div></div>
+            <div><div class="label">Pontos dominados</div><div class="meta-val" id="areasB">0</div></div>
+            <div><div class="label">Capturas</div><div class="meta-val" id="capB">0</div></div>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="section-title">Pontos de dominação</h2>
+      <div class="plist" id="plist"></div>
+      <div class="row-actions">
+        <button class="sec" id="btnAdd" type="button">Adicionar ponto</button>
+        <button class="sec" id="btnReset" type="button">Zerar partida</button>
+      </div>
+
+      <section class="box">
+        <h2 class="section-title">Aparelhos conectados</h2>
+        <p class="note" id="devEmpty">Nenhum aparelho entrou ainda. Peça para abrir o link dos celulares, abaixo.</p>
+        <div class="devs" id="devs"></div>
+        <div class="row-actions">
+          <button class="sec" id="btnNewPoints" type="button">Criar um ponto para cada aparelho sem ponto</button>
+        </div>
+      </section>
+
+      <section class="box">
+        <h2 class="section-title">Links para compartilhar</h2>
+        <div class="field"><label>Celulares de ponto</label>
+          <div class="linkrow"><code id="linkTerminal"></code><button class="sec" type="button" data-copy="linkTerminal">Copiar</button></div>
+        </div>
+        <div class="field"><label>Placar (só para acompanhar)</label>
+          <div class="linkrow"><code id="linkPlacar"></code><button class="sec" type="button" data-copy="linkPlacar">Copiar</button></div>
+        </div>
+      </section>
+
+      <details class="box" id="settings">
+        <summary>Equipes e regras gerais</summary>
+        <div class="cfg-group">
+          <h2 class="section-title">Equipes</h2>
+          <div class="teams-cfg">
+            <div class="team-cfg">
+              <div class="field"><label for="cfgNameA">Nome da equipe 1</label><input id="cfgNameA" type="text" maxlength="16" autocomplete="off"></div>
+              <div class="lbl">Cor da equipe 1</div>
+              <div class="swatches" id="swA"></div>
+            </div>
+            <div class="team-cfg">
+              <div class="field"><label for="cfgNameB">Nome da equipe 2</label><input id="cfgNameB" type="text" maxlength="16" autocomplete="off"></div>
+              <div class="lbl">Cor da equipe 2</div>
+              <div class="swatches" id="swB"></div>
+            </div>
+          </div>
+          <p class="warn-text" id="colorWarn" hidden>As duas equipes estão com a mesma cor. Troque uma delas para não confundir os jogadores.</p>
+        </div>
+        <div class="cfg-group">
+          <h2 class="section-title">Partida</h2>
+          <div class="fields">
+            <div class="field"><label for="cfgDuration">Duração (minutos)</label><input id="cfgDuration" type="number" min="0" max="240" inputmode="numeric"><small>0 = sem limite</small></div>
+          </div>
+          <p class="note">Segundos por ponto, pontos por captura e tempo de segurar ficam na aba de cada ponto.</p>
+        </div>
+      </details>
+    </section>
+  </div>
+</main>
+<script src="/sounds-config.js"></script>
+<script src="/common.js"></script>
+<script src="/admin.js"></script>
+</body>
+</html>

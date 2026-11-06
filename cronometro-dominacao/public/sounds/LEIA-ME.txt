@@ -1,0 +1,7 @@
+Coloque aqui seus arquivos de áudio (mp3, ogg ou wav).
+
+Depois abra public/sounds-config.js e, no evento que você quer trocar, escreva o caminho:
+
+  capture: { file: "sounds/captura.mp3", say: null, tones: null }
+
+Arquivos curtos (1 a 3 segundos) funcionam melhor. Cada celular baixa o arquivo na primeira vez que toca.

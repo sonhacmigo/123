@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cronômetro de Dominação</title>
+<meta name="theme-color" content="#3b5a2a">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" href="/icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/icons/icon-192.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<main class="app">
+  <div class="banner" id="banner" role="status" hidden></div>
+
+  <section class="top" aria-label="Relógio de jogo">
+    <div>
+      <div class="clock-label" id="clockLabel">Restante</div>
+      <div class="clock-time" id="clockTime">--:--</div>
+    </div>
+    <div class="top-actions">
+      <div class="status" id="status" data-s="idle">Conectando</div>
+      <button class="sound-btn" id="soundBtn" type="button"></button>
+    </div>
+  </section>
+
+  <div class="result" id="result" hidden>
+    <h2 id="resultTitle"></h2>
+    <p id="resultText"></p>
+  </div>
+
+  <section class="box wait" id="wait" hidden>
+    <h1>Aguardando ponto</h1>
+    <p>Este aparelho está conectado como <b id="waitName"></b>. O administrador vai escolher o ponto dele. Deixe esta tela aberta.</p>
+  </section>
+
+  <section class="panel" id="pointPanel" hidden>
+    <div class="dev-name" id="pname"></div>
+    <div class="p-state" id="pstate" data-o="">Livre</div>
+    <div class="cap-grid">
+      <button class="cap-btn" id="btnA" data-team="a" type="button"><span class="fill"></span><span class="nm"></span><span class="sub"></span></button>
+      <button class="cap-btn" id="btnB" data-team="b" type="button"><span class="fill"></span><span class="nm"></span><span class="sub"></span></button>
+    </div>
+    <div class="p-stats">
+      <div class="p-stat" data-team="a"><div class="who"><i class="dot" data-team="a"></i><span id="whoA"></span></div><div class="big" id="ptsA">0 pts</div><div class="small" id="infoA"></div></div>
+      <div class="p-stat" data-team="b"><div class="who"><i class="dot" data-team="b"></i><span id="whoB"></span></div><div class="big" id="ptsB">0 pts</div><div class="small" id="infoB"></div></div>
+    </div>
+  </section>
+
+  <div class="box" id="playerBox">
+    <div class="field">
+      <label for="player">Seu nome (aparece no aviso de captura)</label>
+      <input class="player" id="player" type="text" maxlength="20" autocomplete="off">
+    </div>
+  </div>
+  <p class="msg" id="msg" role="status"></p>
+</main>
+<script src="/sounds-config.js"></script>
+<script src="/common.js"></script>
+<script src="/terminal.js"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "name": "cronometro-dominacao",
+  "version": "2.0.0",
+  "description": "Cronômetro de dominação para airsoft com painel do administrador e celulares de ponto fixo, em tempo real.",
+  "private": true,
+  "license": "UNLICENSED",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

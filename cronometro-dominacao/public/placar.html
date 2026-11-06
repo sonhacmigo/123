@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Placar do Cronômetro de Dominação</title>
+<meta name="theme-color" content="#3b5a2a">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" href="/icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/icons/icon-192.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<main class="app">
+  <div class="banner" id="banner" role="status" hidden></div>
+
+  <section class="top" aria-label="Relógio de jogo">
+    <div>
+      <div class="clock-label" id="clockLabel">Restante</div>
+      <div class="clock-time" id="clockTime">--:--</div>
+    </div>
+    <div class="top-actions">
+      <div class="status" id="status" data-s="idle">Conectando</div>
+      <button class="sound-btn" id="soundBtn" type="button"></button>
+    </div>
+  </section>
+
+  <div class="result" id="result" hidden>
+    <h2 id="resultTitle"></h2>
+    <p id="resultText"></p>
+  </div>
+
+  <section class="board" aria-label="Placar">
+    <div class="score" data-team="a">
+      <div class="score-name" id="nameA">Vermelho</div>
+      <div><div class="label">Pontos</div><div class="score-pts" id="ptsA">0</div></div>
+      <div class="score-meta">
+        <div><div class="label">Tempo de posse</div><div class="meta-val" id="timeA">00:00</div></div>
+        <div><div class="label">Pontos dominados</div><div class="meta-val" id="areasA">0</div></div>
+        <div><div class="label">Capturas</div><div class="meta-val" id="capA">0</div></div>
+      </div>
+    </div>
+    <div class="score" data-team="b">
+      <div class="score-name" id="nameB">Azul</div>
+      <div><div class="label">Pontos</div><div class="score-pts" id="ptsB">0</div></div>
+      <div class="score-meta">
+        <div><div class="label">Tempo de posse</div><div class="meta-val" id="timeB">00:00</div></div>
+        <div><div class="label">Pontos dominados</div><div class="meta-val" id="areasB">0</div></div>
+        <div><div class="label">Capturas</div><div class="meta-val" id="capB">0</div></div>
+      </div>
+    </div>
+  </section>
+
+  <h2 class="section-title">Pontos de dominação</h2>
+  <div class="plist" id="plist"></div>
+</main>
+<script src="/sounds-config.js"></script>
+<script src="/common.js"></script>
+<script src="/placar.js"></script>
+</body>
+</html>
