@@ -1,0 +1,12 @@
+# Receita para publicar no Render (plano gratuito). Veja o README.
+services:
+  - type: web
+    name: cronometro-dominacao
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /healthz
+    envVars:
+      - key: ADMIN_PASSWORD
+        sync: false
